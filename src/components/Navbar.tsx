@@ -10,14 +10,18 @@ import { NAV_LINKS, RESTAURANT_INFO } from '@/lib/constants'
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
+    const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
+        setMounted(true)
         const handleScroll = () => {
             setScrolled(window.scrollY > 50)
         }
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    const adminHref = mounted && localStorage.getItem('admin_auth') ? "/admin" : "/login"
 
     return (
         <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg py-1' : 'bg-transparent py-3'}`}>
@@ -50,7 +54,7 @@ export default function Navbar() {
 
                     <div className="hidden md:flex items-center space-x-4">
                         <Link
-                            href="/admin"
+                            href={adminHref}
                             className="bg-primary/10 text-primary hover:bg-primary hover:text-white px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 border border-primary/20 flex items-center space-x-2"
                         >
                             <ShieldCheck size={14} />

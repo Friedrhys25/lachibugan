@@ -297,7 +297,7 @@ export default function Home() {
                       </span>
                     </div>
                     <Image
-                      src={typeof item === 'object' ? (item.image_url || '/images/hero-food.png') : '/images/hero-food.png'}
+                      src={typeof item === 'object' ? (item.image_url || '/images/laChibugan.jpg') : '/images/laChibugan.jpg'}
                       alt={typeof item === 'object' ? item.name : "Food Item"}
                       fill
                       className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
@@ -342,7 +342,7 @@ export default function Home() {
 
             <div className="relative w-full md:w-1/2 aspect-square max-w-[400px]">
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-[80px]" />
-              <Image src="/images/hero-food.png" alt="Food decor" fill className="object-contain relative z-10" />
+              <Image src="/images/laChibugan.jpg" alt="Food decor" fill className="object-contain relative z-10 rounded-full border-4 border-primary/20" />
             </div>
 
             <div className="absolute top-0 right-0 w-full h-full opacity-[0.02] pointer-events-none scale-150">

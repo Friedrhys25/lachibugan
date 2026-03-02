@@ -9,17 +9,21 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import { MENU_CATEGORIES } from '@/lib/constants'
+import { Database } from '@/types/database.types'
 import { supabase } from '@/lib/supabase'
+
+type MenuItem = Database['public']['Tables']['menu_items']['Row']
 
 export default function AdminMenu() {
     const router = useRouter()
-    const [items, setItems] = useState<any[]>([])
+    const [items, setItems] = useState<MenuItem[]>([])
     const [loading, setLoading] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [editingItem, setEditingItem] = useState<any>(null)
+    const [editingItem, setEditingItem] = useState<MenuItem | null>(null)
     const [searchQuery, setSearchQuery] = useState('')
     const [filter, setFilter] = useState('All')
     const [actionLoading, setActionLoading] = useState(false)
+    const [isUploading, setIsUploading] = useState(false)
 
     // Auth Guard
     useEffect(() => {
@@ -59,7 +63,7 @@ export default function AdminMenu() {
         }
     }
 
-    const handleOpenModal = (item: any = null) => {
+    const handleOpenModal = (item: MenuItem | null = null) => {
         if (item) {
             setEditingItem(item)
             setFormData({
@@ -80,6 +84,35 @@ export default function AdminMenu() {
             })
         }
         setIsModalOpen(true)
+    }
+
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (!file) return
+
+        setIsUploading(true)
+        try {
+            const fileExt = file.name.split('.').pop()
+            const fileName = `${Math.random()}.${fileExt}`
+            const filePath = `${fileName}`
+
+            const { error: uploadError } = await supabase.storage
+                .from('menu_items')
+                .upload(filePath, file)
+
+            if (uploadError) throw uploadError
+
+            const { data } = supabase.storage
+                .from('menu_items')
+                .getPublicUrl(filePath)
+
+            setFormData({ ...formData, image_url: data.publicUrl })
+        } catch (error: any) {
+            console.error('Error uploading image:', error)
+            alert('Error uploading image: ' + (error.message || 'Unknown error'))
+        } finally {
+            setIsUploading(false)
+        }
     }
 
     const handleSaveItem = async (e: React.FormEvent) => {
@@ -217,7 +250,7 @@ export default function AdminMenu() {
                                         className="bg-white rounded-[3rem] overflow-hidden border border-gray-50 shadow-sm group hover:shadow-2xl transition-all duration-500 relative p-3"
                                     >
                                         <div className="relative h-64 w-full overflow-hidden rounded-[2.5rem] bg-gray-50">
-                                            <Image src={item.image_url || '/images/hero-food.png'} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
+                                            <Image src={item.image_url || '/images/laChibugan.jpg'} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
 
                                             <div className="absolute top-4 right-4 flex space-x-2">
                                                 <button
@@ -309,14 +342,24 @@ export default function AdminMenu() {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 italic">Visual Asset URL</label>
-                                            <input
-                                                type="text"
-                                                value={formData.image_url}
-                                                onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                                                placeholder="https://image-source.com/dish.jpg"
-                                                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-6 py-4.5 focus:ring-4 focus:ring-primary/5 focus:bg-white focus:border-primary/20 outline-none transition-all font-bold text-gray-700"
-                                            />
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 italic">Visual Asset (Upload Image)</label>
+                                            <div className="relative group">
+                                                <input
+                                                    type="file"
+                                                    accept="image/*"
+                                                    onChange={handleFileUpload}
+                                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                                />
+                                                <div className="w-full bg-gray-50 border-2 border-dashed border-gray-100 rounded-2xl px-6 py-4.5 group-hover:border-primary/20 transition-all flex items-center justify-between text-gray-700">
+                                                    <span className="font-bold text-sm truncate">
+                                                        {isUploading ? 'Uploading...' : formData.image_url ? 'Image Uploaded ✓' : 'Click to Browse File'}
+                                                    </span>
+                                                    <Loader2 className={`w-4 h-4 text-primary ${isUploading ? 'animate-spin opacity-100' : 'opacity-0'}`} />
+                                                </div>
+                                            </div>
+                                            {formData.image_url && (
+                                                <p className="mt-2 text-[10px] text-primary/50 font-bold truncate">URL: {formData.image_url}</p>
+                                            )}
                                         </div>
                                     </div>
 

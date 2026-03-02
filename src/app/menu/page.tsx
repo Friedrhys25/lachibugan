@@ -122,7 +122,7 @@ export default function MenuPage() {
                                 >
                                     <div className="relative h-80 w-full overflow-hidden rounded-[2.5rem] bg-gray-50">
                                         <Image
-                                            src={item.image_url || '/images/hero-food.png'}
+                                            src={item.image_url || '/images/laChibugan.jpg'}
                                             alt={item.name}
                                             fill
                                             className="object-cover transition-transform duration-1000 group-hover:scale-110"

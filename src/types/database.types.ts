@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       restaurant_settings: {
@@ -49,6 +49,7 @@ export interface Database {
           email?: string
           updated_at?: string
         }
+        Relationships: []
       }
       menu_items: {
         Row: {
@@ -78,6 +79,7 @@ export interface Database {
           is_featured?: boolean
           created_at?: string
         }
+        Relationships: []
       }
     }
     Views: {

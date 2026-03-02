@@ -6,7 +6,10 @@ import { motion } from 'framer-motion'
 import { Save, Globe, Phone, MapPin, Mail, Instagram, MessageCircle, Video, LogOut, LayoutDashboard, UtensilsCrossed } from 'lucide-react'
 import Link from 'next/link'
 import { RESTAURANT_INFO } from '@/lib/constants'
+import { Database } from '@/types/database.types'
 import { supabase } from '@/lib/supabase'
+
+type Settings = Database['public']['Tables']['restaurant_settings']['Row']
 
 export default function AdminSettings() {
     const router = useRouter()
