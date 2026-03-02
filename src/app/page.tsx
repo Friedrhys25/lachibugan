@@ -44,9 +44,9 @@ export default function Home() {
   }
 
   const AWARDS = [
-    { name: "California Legislature Spotlight", image: "/images/awards/californiaLegislature.jpg", year: "2025" },
-    { name: "Glassell Park Community Award", image: "/images/awards/glasellPark.jpg", year: "2025" },
-    { name: "Yelp Highly Rated Award", image: "/images/awards/yelpAward.jpg", year: "2025" },
+    { name: "California Legislature Spotlight", image: "/lachibugan/images/awards/californiaLegislature.jpg", year: "2025" },
+    { name: "Glassell Park Community Award", image: "/lachibugan/images/awards/glasellPark.jpg", year: "2025" },
+    { name: "Yelp Highly Rated Award", image: "/lachibugan/images/awards/yelpAward.jpg", year: "2025" },
   ]
 
   return (
@@ -103,7 +103,7 @@ export default function Home() {
             >
               <div className="absolute w-[120%] h-[120%] bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse" />
               <Image
-                src="/images/hero-food.png"
+                src="/lachibugan/images/hero-food.png"
                 alt="LA Chibugan Featured Dish"
                 width={700}
                 height={700}
@@ -117,7 +117,7 @@ export default function Home() {
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="absolute -top-10 -right-10 w-32 h-32 md:w-40 md:h-40 hidden md:block"
               >
-                <Image src="/images/laChibugan.jpg" alt="Logo" fill className="rounded-full border-4 border-primary shadow-2xl" />
+                <Image src="/lachibugan/images/laChibugan.jpg" alt="Logo" fill className="rounded-full border-4 border-primary shadow-2xl" />
               </motion.div>
             </motion.div>
           </div>
@@ -182,7 +182,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="mt-12 flex justify-center">
-                  <Image src="/images/laChibugan.jpg" alt="Seal" width={100} height={100} className="rounded-full grayscale brightness-200 opacity-20" />
+                  <Image src="/lachibugan/images/laChibugan.jpg" alt="Seal" width={100} height={100} className="rounded-full grayscale brightness-200 opacity-20" />
                 </div>
               </div>
               <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-primary rounded-full blur-[80px] -z-10" />
@@ -342,11 +342,11 @@ export default function Home() {
 
             <div className="relative w-full md:w-1/2 aspect-square max-w-[400px]">
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-[80px]" />
-              <Image src="/images/laChibugan.jpg" alt="Food decor" fill className="object-contain relative z-10 rounded-full border-4 border-primary/20" />
+              <Image src="/lachibugan/images/laChibugan.jpg" alt="Food decor" fill className="object-contain relative z-10 rounded-full border-4 border-primary/20" />
             </div>
 
             <div className="absolute top-0 right-0 w-full h-full opacity-[0.02] pointer-events-none scale-150">
-              <Image src="/images/laChibugan.jpg" alt="Logo Patterns" fill className="object-cover" />
+              <Image src="/lachibugan/images/laChibugan.jpg" alt="Logo Patterns" fill className="object-cover" />
             </div>
           </motion.div>
         </div>

@@ -30,7 +30,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center space-x-3 group">
                         <div className="relative w-14 h-14 md:w-16 md:h-16 group-hover:scale-105 transition-transform duration-300">
                             <Image
-                                src="/images/laChibugan.jpg"
+                                src="/lachibugan/images/laChibugan.jpg"
                                 alt="LA.Chibugan Logo"
                                 fill
                                 className="object-contain rounded-full border-2 border-primary"
