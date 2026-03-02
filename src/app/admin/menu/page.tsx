@@ -250,7 +250,7 @@ export default function AdminMenu() {
                                         className="bg-white rounded-[3rem] overflow-hidden border border-gray-50 shadow-sm group hover:shadow-2xl transition-all duration-500 relative p-3"
                                     >
                                         <div className="relative h-64 w-full overflow-hidden rounded-[2.5rem] bg-gray-50">
-                                            <Image src={item.image_url || '/images/laChibugan.jpg'} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
+                                            <Image src={item.image_url || '/lachibugan/images/laChibugan.jpg'} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
 
                                             <div className="absolute top-4 right-4 flex space-x-2">
                                                 <button

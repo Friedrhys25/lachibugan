@@ -15,7 +15,7 @@ export default function Footer() {
                     <div className="space-y-8">
                         <Link href="/" className="flex items-center space-x-3">
                             <div className="relative w-16 h-16">
-                                <Image src="/images/laChibugan.jpg" alt="Logo" fill className="rounded-full border-2 border-primary" />
+                                <Image src="/lachibugan/images/laChibugan.jpg" alt="Logo" fill className="rounded-full border-2 border-primary" />
                             </div>
                             <span className="text-2xl font-black tracking-tighter uppercase whitespace-nowrap">
                                 {RESTAURANT_INFO.name}
